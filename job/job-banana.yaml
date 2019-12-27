@@ -1,0 +1,19 @@
+# for job in apple banana cherry;do cat simple-job-temp.yaml |sed "s/\banana/$job/" >job-$job.yaml;done
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: process-item-banana
+  labels:
+    jobgroups: jobexample
+spec:
+  template:
+    metadata:
+      name: jobexample
+      labels:
+        jobgroups: jobexample
+    spec:
+      containers:
+      - name: simple-job
+        image: busybox
+        command: ["sh","-c","echo Processing item banana && sleep 5"]
+      restartPolicy: Never

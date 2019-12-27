@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index
+data:
+ index: |
+   haha
+   gsadsa ff
+   dsadsa
+ nginx: "abc"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm2-test
+spec:
+  containers:
+    - name: test
+      image: nginx
+      volumeMounts:
+        - name: testfile
+          mountPath: /index/
+  volumes:
+  - name: testfile
+    configMap:
+      name: index
+      items:
+      - key: index
+        path: foo.html
+      - key: nginx
+        path: nginx.conf
