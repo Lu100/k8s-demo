@@ -4,20 +4,20 @@ metadata:
   name: dapi-test-pod
 spec:
   containers:
-  - name: dapi-test
-    image: busybox
-    command: ["sh","-c","env|grep MY"]
-    env:
-      - name: MY_POD_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.name
-      - name: MY_POD_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-      - name: MY_POD_IP
-        valueFrom:
-          fieldRef:
-            fieldPath: status.podIP
+    - name: dapi-test
+      image: busybox
+      command: ["sh","-c","env|grep MY"]
+      env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
   restartPolicy: Never

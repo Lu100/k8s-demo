@@ -14,9 +14,9 @@ spec:
         name: redis-master
     spec:
       containers:
-      - name: master
-        image: kubeguide/redis-master
-        ports:
-        - containerPort: 6379
+        - name: master
+          image: kubeguide/redis-master
+          ports:
+            - containerPort: 6379
       nodeSelector:
         zone: vm

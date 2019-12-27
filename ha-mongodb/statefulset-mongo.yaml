@@ -13,33 +13,33 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: mongo
-        image: mongo
-        command:
-        - mongod
-        - "replSet"
-        - rs0
-        - "--smallfiles"
-        - "--noprealloc"
-        ports:
-          - containerPort: 27017
-        volumeMounts:
-          - name: mongo-presistent-storage
-            mountPath: /data/db
-      - name: mongo-sidecar
-        image: cvallance/mongo-k8s-sidecar
-        env:
-        - name: MONGO_SIDECAR_POD_LABELS
-          value: "role=mongo,environment=test"
-        - name: KUBERNETES_MONGO_SERVICE_NAME
-          value: "mongo"
+        - name: mongo
+          image: mongo
+          command:
+            - mongod
+            - "replSet"
+            - rs0
+            - "--smallfiles"
+            - "--noprealloc"
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-presistent-storage
+              mountPath: /data/db
+        - name: mongo-sidecar
+          image: cvallance/mongo-k8s-sidecar
+          env:
+            - name: MONGO_SIDECAR_POD_LABELS
+              value: "role=mongo,environment=test"
+            - name: KUBERNETES_MONGO_SERVICE_NAME
+              value: "mongo"
   volumeClaimTemplates:
-  - metadata:
-      name: mongo-presistent-storage
-      annotations:
-        volume.beta.kubernetes.io/storage-class: "fast"
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 100Gi
+    - metadata:
+        name: mongo-presistent-storage
+        annotations:
+          volume.beta.kubernetes.io/storage-class: "fast"
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 100Gi

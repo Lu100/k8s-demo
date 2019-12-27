@@ -3,11 +3,11 @@ kind: ConfigMap
 metadata:
   name: index
 data:
- index: |
-   haha
-   gsadsa ff
-   dsadsa
- nginx: "abc"
+  index: |
+    haha
+    gsadsa ff
+    dsadsa
+  nginx: "abc"
 ---
 apiVersion: v1
 kind: Pod
@@ -21,6 +21,6 @@ spec:
         - name: testfile
           mountPath: /index/
   volumes:
-  - name: testfile
-    configMap:
-      name: index
+    - name: testfile
+      configMap:
+        name: index

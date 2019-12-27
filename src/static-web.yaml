@@ -6,8 +6,8 @@ metadata:
     name: static-web
 spec:
   containers:
-  - name: static-web
-    image: nginx
-    ports:
-    - name: web
-      containerPort: 80
+    - name: static-web
+      image: nginx
+      ports:
+        - name: web
+          containerPort: 80

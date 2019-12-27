@@ -6,11 +6,11 @@ metadata:
     name: frontend
 spec:
   containers:
-  - name: frontend
-    image: kubeguide/guestbook-php-frontend
-    ports:
-    - containerPort: 80
-  - name: redis
-    image: kubeguide/redis-master
-    ports:
-    - containerPort: 6379
+    - name: frontend
+      image: kubeguide/guestbook-php-frontend
+      ports:
+        - containerPort: 80
+    - name: redis
+      image: kubeguide/redis-master
+      ports:
+        - containerPort: 6379

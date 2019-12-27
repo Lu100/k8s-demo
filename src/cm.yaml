@@ -12,17 +12,17 @@ metadata:
   name: cm-test
 spec:
   containers:
-  - name: cm-test
-    image: busybox
-    command: [ "/bin/sh","-c","env|grep APP"]
-    env:
-    - name: APPLOGLEVEL
-      valueFrom:
-        configMapKeyRef:
-          name: cm-vars
-          key: loglevel
-    - name: APPDATADIR
-      valueFrom:
-        configMapKeyRef:
-          name: cm-vars
-          key: datadir
+    - name: cm-test
+      image: busybox
+      command: [ "/bin/sh","-c","env|grep APP"]
+      env:
+        - name: APPLOGLEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: cm-vars
+              key: loglevel
+        - name: APPDATADIR
+          valueFrom:
+            configMapKeyRef:
+              name: cm-vars
+              key: datadir
