@@ -4,6 +4,7 @@ metadata:
   labels:
     name: cassandra
   name: cassandra
+  namespace: kube-system
 spec:
   ports:
     - port: 9042
