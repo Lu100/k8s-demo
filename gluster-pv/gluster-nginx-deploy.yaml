@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: nginx
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: foo
+              mountPath: "/usr/share/nginx/html"
+      volumes:
+      - name: foo
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: gv0
+          readOnly: false

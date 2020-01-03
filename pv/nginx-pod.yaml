@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: pv-bussybox
+    image: nginx
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html
+      name: mydata
+    ports:
+    - containerPort: 80
+  volumes:
+  - name: mydata
+    persistentVolumeClaim:
+      claimName: mypvc1
