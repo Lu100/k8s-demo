@@ -63,34 +63,34 @@ spec:
             - "/bin/bash"
             - "/-c"
             - "systemctl status glusterfsd.service"
-  volumes:
-    - name: glusterfs-heketi
-      hostPath:
-        path: "/var/lib/heketi"
-    - name: glusterfs-run
-      hostPath:
-        path: "/run"
-    - name: glusterfs-lvm
-      hostPath:
-        path:: "/run/lvm"
-    - name: glusterfs-etc
-      hostPath:
-        path:: "/etc/glusterfs"
-    - name: glusterfs-logs
-      hostPath:
-        path:: "/var/log/glusterfs"
-    - name: glusterfs-config
-      hostPath:
-        path:: "/var/lib/glusterfsd"
-    - name: glusterfs-dev
-      hostPath:
-        path:: "/dev"
-    - name: glusterfs-misc
-      hostPath:
-        path:: "/var/lib/misc/glusterfsd"
-    - name: glusterfs-cgroup
-      hostPath:
-        path:: "/sys/fs/cgroup"
-    - name: glusterfs-ssl
-      hostPath:
-        path:: "/etc/ssl"
+      volumes:
+        - name: glusterfs-heketi
+          hostPath:
+            path: "/var/lib/heketi"
+        - name: glusterfs-run
+          hostPath:
+            path: "/run"
+        - name: glusterfs-lvm
+          hostPath:
+            path:: "/run/lvm"
+        - name: glusterfs-etc
+          hostPath:
+            path:: "/etc/glusterfs"
+        - name: glusterfs-logs
+          hostPath:
+            path:: "/var/log/glusterfs"
+        - name: glusterfs-config
+          hostPath:
+            path:: "/var/lib/glusterfsd"
+        - name: glusterfs-dev
+          hostPath:
+            path:: "/dev"
+        - name: glusterfs-misc
+          hostPath:
+            path:: "/var/lib/misc/glusterfsd"
+        - name: glusterfs-cgroup
+          hostPath:
+            path:: "/sys/fs/cgroup"
+        - name: glusterfs-ssl
+          hostPath:
+            path:: "/etc/ssl"
