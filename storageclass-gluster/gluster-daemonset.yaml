@@ -1,5 +1,5 @@
 kind: DaemonSet
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: glusterfs
   labels:
@@ -9,12 +9,14 @@ metadata:
     tags: glusterfs
 spec:
   template:
-    name: glusterfs
-    labels:
-      glusterfs-node: pod
-  spec:
-    nodeSelector:
+    metadata:
+      name: glusterfs
+      labels:
+        glusterfs-node: pod
+  selector:
+    matchLabels:
       storagenode: glusterfs
+  spec:
     hostNetwork: true
     containers:
     - image: gluster/gluster-centos:latest
