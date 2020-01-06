@@ -8,61 +8,61 @@ metadata:
     description: GlusterFS DaemonSet
     tags: glusterfs
 spec:
+  selector:
+    matchLabels:
+      storagenode: glusterfs
   template:
     metadata:
       name: glusterfs
       labels:
         glusterfs-node: pod
-  selector:
-    matchLabels:
-      storagenode: glusterfs
-  spec:
-    hostNetwork: true
-    containers:
-    - image: gluster/gluster-centos:latest
-      name: glusterfs
-      volumeMounts:
-      - name: glusterfs-heketi
-        mountPath: "/var/lib/heketi"
-      - name: glusterfs-run
-        mountPath: "/run"
-      - name: glusterfs-lvm
-        mountPath: "/run/lvm"
-      - name: glusterfs-etc
-        mountPath: "/etc/glusterfs"
-      - name: glusterfs-logs
-        mountPath: "/var/log/glusterfs"
-      - name: glusterfs-config
-        mountPath: "/var/lib/glusterfsd"
-      - name: glusterfs-dev
-        mountPath: "/dev"
-      - name: glusterfs-misc
-        mountPath: "/var/lib/misc/glusterfsd"
-      - name: glusterfs-cgroup
-        mountPath: "/sys/fs/cgroup"
-        readOnly: true
-      - name: glusterfs-ssl
-        mountPath: "/etc/ssl"
-        readOnly: true
-      securityContext:
-        capabilities: {}
-        privileged: true
-      readinessProbe:
-        timeoutSeconds: 3
-        initialDelaySeconds: 60
-        exec:
-          command:
-          - "/bin/bash"
-          - "/-c"
-          - "systemctl status glusterfsd.service"
-      livenessProbe:
-        timeoutSeconds: 3
-        initialDelaySeconds: 60
-        exec:
-          command:
-          - "/bin/bash"
-          - "/-c"
-          - "systemctl status glusterfsd.service"
+    spec:
+      hostNetwork: true
+      containers:
+      - image: gluster/gluster-centos:latest
+        name: glusterfs
+        volumeMounts:
+        - name: glusterfs-heketi
+          mountPath: "/var/lib/heketi"
+        - name: glusterfs-run
+          mountPath: "/run"
+        - name: glusterfs-lvm
+          mountPath: "/run/lvm"
+        - name: glusterfs-etc
+          mountPath: "/etc/glusterfs"
+        - name: glusterfs-logs
+          mountPath: "/var/log/glusterfs"
+        - name: glusterfs-config
+          mountPath: "/var/lib/glusterfsd"
+        - name: glusterfs-dev
+          mountPath: "/dev"
+        - name: glusterfs-misc
+          mountPath: "/var/lib/misc/glusterfsd"
+        - name: glusterfs-cgroup
+          mountPath: "/sys/fs/cgroup"
+          readOnly: true
+        - name: glusterfs-ssl
+          mountPath: "/etc/ssl"
+          readOnly: true
+        securityContext:
+          capabilities: {}
+          privileged: true
+        readinessProbe:
+          timeoutSeconds: 3
+          initialDelaySeconds: 60
+          exec:
+            command:
+            - "/bin/bash"
+            - "/-c"
+            - "systemctl status glusterfsd.service"
+        livenessProbe:
+          timeoutSeconds: 3
+          initialDelaySeconds: 60
+          exec:
+            command:
+            - "/bin/bash"
+            - "/-c"
+            - "systemctl status glusterfsd.service"
     volumes:
       - name: glusterfs-heketi
         hostPath:
